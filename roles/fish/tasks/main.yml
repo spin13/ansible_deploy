@@ -1,0 +1,7 @@
+- name: install fish
+  yum: name=fish state=latest
+
+- name: change shell to fish
+  user:
+    name: "{{ username }}"
+    shell: /bin/fish
