@@ -1,0 +1,15 @@
+- name: check omf install file exists?
+  stat: path=install
+  register: omf_install_file
+
+- debug: var=omf_install_file.stat
+
+- name: download oh-my-fish install file
+  when: not omf_install_file.stat.exists
+  become: no
+  get_url: url="https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install" dest=.
+
+- name: install oh-my-fish
+  when: omf_install_file.stat.exists
+  shell: fish install
+

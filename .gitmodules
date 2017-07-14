@@ -1,3 +1,6 @@
 [submodule "roles/fish"]
 	path = roles/fish
 	url = git@github.com:colstrom/ansible-fish.git
+[submodule "roles/ansible-apt-repository"]
+	path = roles/ansible-apt-repository
+	url = git@github.com:colstrom/ansible-apt-repository.git

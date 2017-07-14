@@ -1,0 +1,6 @@
+- name: append PATH /usr/local/bin
+  when: not ansible_env.PATH | search('/usr/local/bin')
+  lineinfile: 
+    dest: ~/.bashrc
+    line: "export PATH=$PATH:/usr/local/bin"
+

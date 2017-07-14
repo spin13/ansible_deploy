@@ -1,0 +1,16 @@
+- name: first_deploy
+  become: yes
+  become_user: root
+  become_method: sudo
+  hosts: all
+  tasks:
+    # - yum: name=* state=latest
+  roles:
+    # - fish
+    # - omf
+    #- git_latest
+
+- hosts: all
+  roles:
+    - bash
+    - fish

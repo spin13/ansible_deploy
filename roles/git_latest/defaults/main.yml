@@ -1,0 +1,4 @@
+git_archive_dir: /usr/local/src
+git_name: git-2.9.4
+git_archive_name: "{{ git_name }}.tar.gz"
+git_prefix_dir: /usr/loca/bin

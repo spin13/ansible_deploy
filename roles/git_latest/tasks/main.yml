@@ -1,0 +1,12 @@
+# receive git version more than 1.8.7?
+- name: installed git version more than 1.8.7?
+  # git version more than 1.8.7?
+  shell: test `git --version | awk '{ print $3 }' | awk -F. '{printf "%2d%02d%02d", $1,$2,$3}'` -ge 10807
+  register: is_git_valid
+  failed_when: is_git_valid.rc not in [0, 1, 2]
+  changed_when: false
+
+
+- name: install git when git outdated
+  when: is_git_valid.rc == 0
+  include: git_install.yml

@@ -1,0 +1,50 @@
+- name: install require package
+  yum: name={{ item }} state=latest
+  with_items:
+    - curl-devel
+    - expat-devel
+    - gettext-devel
+    - openssl-devel
+    - zlib-devel
+    - perl-ExtUtils-MakeMaker
+
+- name: remove old git
+  yum: name=git state=removed
+
+
+- name: git2.9.4.tar.gz exists?
+  stat: path="{{ git_archive_dir }}/{{ git_archive_name }}"
+  register: git_tar
+
+
+- name: unarchive git
+  unarchive:
+    src: "{{ git_name }}.tar.gz"
+    dest: "{{ git_archive_dir }}"
+
+- name: configure git
+  shell: ./configure
+  args:
+    chdir: "{{ git_archive_dir }}/{{ git_name }}"
+
+- name: make all git
+  make:
+    chdir: "{{ git_archive_dir }}/{{ git_name }}"
+    target: all
+    params:
+      prefix: "{{ git_prefix_dir }}"
+
+- name: make install git
+  make:
+    chdir: "{{ git_archive_dir }}/{{ git_name }}"
+    target: install
+    params:
+      prefix: "{{ git_prefix_dir }}"
+
+- name: clean archive files
+  file:
+    state: absent
+    path: "{{ git_archive_dir }}/{{ item }}"
+  with_items:
+      - "{{ git_name }}"
+      - "{{ git_name }}.tar.gz"
