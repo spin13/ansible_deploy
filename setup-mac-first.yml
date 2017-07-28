@@ -4,7 +4,7 @@
   become_user: root
   become_method: sudo
   vars_files:
-    - os_vars/linux.yml
+    - os_vars/mac.yml
   roles:
     - bash
     - fish

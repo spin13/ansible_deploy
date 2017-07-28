@@ -1,0 +1,4 @@
+go_tarball: "go1.8.3.darwin-amd64.tar.gz"
+go_tarball_checksum: "sha256:f20b92bc7d4ab22aa18270087c478a74463bd64a893a94264434a38a4b167c05"
+go_version_target: "go version go1.8.3 darwin/amd64"
+set_go_path: true
